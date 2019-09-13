@@ -45,3 +45,31 @@ router.put("/update/:id", (req, res, next) => {
     }
   });
 });
+
+//delete article
+router.delete("/delete/:id", (req, res, next) => {
+  var id = req.params.id;
+  var loggedInUser = req.userid;
+
+  Article.findById(id, (err, article) => {
+    if (err) return res.json({ msg: "could not find the article" });
+    if (loggedInUser == article.userid) {
+      Article.findByIdAndDelete(id, (err, deletedArticle) => {
+        if (err) return res.json({ msg: "Could not delete article" });
+        Comment.find({ articleId: id }, (err, comments) => {
+          if (err)
+            return res.json({
+              msg: "could not find comments of deleted article"
+            });
+          comments.forEach(elem => {
+            Comment.findByIdAndDelete(elem, (err, deletedComments) => {
+              if (err) return res.json({ msg: "could not delete comments" });
+              return res.json({ msg: "Article and comments deleted" });
+            });
+          });
+        });
+      });
+    } else {
+    }
+  });
+});
