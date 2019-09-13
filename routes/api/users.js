@@ -26,6 +26,7 @@ router.post("/login", (req, res, next) => {
     return res.json({ token });
   });
 });
+
 router.use(authToken.authToken);
 
 module.exports = router;
