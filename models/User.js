@@ -15,5 +15,16 @@ var userSchema = new Schema({
   commentsId: { type: [Schema.Types.ObjectId], ref: "Comment" }
 });
 
+userSchema.pre("save", function(next) {
+  if (this.password) {
+    this.password = bcrypt.hashSync(this.password, 10);
+  }
+  next();
+});
+
+userSchema.methods.validatePassword = function(password) {
+  return bcrypt.compareSync(password, this.password);
+};
+
 var User = mongoose.model("User", userSchema);
 module.exports = User;
