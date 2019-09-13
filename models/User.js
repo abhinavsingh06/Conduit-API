@@ -4,15 +4,15 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
-  username: {},
-  email: {},
-  password: {},
+  username: { type: String, required: true },
+  email: { type: String, required: true, match: /@/, unique: true },
+  password: { type: String, required: true },
   profilePicture: String,
   bio: String,
-  followers: {},
-  following: {},
-  articlesId: {},
-  commentsId: {}
+  followers: { type: [] },
+  following: { type: [] },
+  articlesId: { type: [Schema.Types.ObjectId], ref: "Article" },
+  commentsId: { type: [Schema.Types.ObjectId], ref: "Comment" }
 });
 
 var User = mongoose.model("User", userSchema);
