@@ -13,3 +13,12 @@ router.get("/", (req, res, next) => {
     return res.json({ allArticles });
   });
 });
+
+//display particular article
+router.get("/:id", (req, res, next) => {
+  var id = req.params.id;
+  Article.findById(id, (err, article) => {
+    if (err) return res.json({ msg: "cannot fetch article" });
+    return res.json({ article });
+  });
+});
