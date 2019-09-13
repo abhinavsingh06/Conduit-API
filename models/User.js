@@ -3,6 +3,7 @@ var mongoose = require("mongoose");
 
 var Schema = mongoose.Schema;
 
+//userschema model
 var userSchema = new Schema({
   username: { type: String, required: true },
   email: { type: String, required: true, match: /@/, unique: true },
@@ -15,6 +16,7 @@ var userSchema = new Schema({
   commentsId: { type: [Schema.Types.ObjectId], ref: "Comment" }
 });
 
+//synchronous-hash the password for new user
 userSchema.pre("save", function(next) {
   if (this.password) {
     this.password = bcrypt.hashSync(this.password, 10);
@@ -22,6 +24,7 @@ userSchema.pre("save", function(next) {
   next();
 });
 
+//synchronous-compare the password
 userSchema.methods.validatePassword = function(password) {
   return bcrypt.compareSync(password, this.password);
 };
