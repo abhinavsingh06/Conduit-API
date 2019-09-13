@@ -70,6 +70,7 @@ router.delete("/delete/:id", (req, res, next) => {
         });
       });
     } else {
+      return res.json({ msg: "you are not authorized to delete this article" });
     }
   });
 });
