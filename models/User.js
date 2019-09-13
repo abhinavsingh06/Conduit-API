@@ -12,8 +12,8 @@ var userSchema = new Schema({
   bio: String,
   followers: { type: [] },
   following: { type: [] },
-  articlesId: { type: [Schema.Types.ObjectId], ref: "Article" },
-  commentsId: { type: [Schema.Types.ObjectId], ref: "Comment" }
+  articlesId: [{ type: Schema.Types.ObjectId, ref: "Article" }],
+  commentsId: [{ type: Schema.Types.ObjectId, ref: "Comment" }]
 });
 
 //synchronous-hash the password for new user

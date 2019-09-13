@@ -6,7 +6,7 @@ var articleSchema = new Schema({
   description: { type: String, required: true },
   body: { type: String, required: true },
   tag: { type: String },
-  commentsId: { type: [Schema.Types.ObjectId], ref: "Comment" },
+  commentsId: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
   userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
   fovourites: { type: Schema.Types.ObjectId, ref: "User" }
 });
