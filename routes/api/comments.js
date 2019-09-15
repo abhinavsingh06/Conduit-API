@@ -12,3 +12,15 @@ router.get("/:articleId", (req, res, next) => {
     res.json({ comments });
   });
 });
+
+router.use(authToken.authToken);
+
+//add comments
+router.post("/add/:articleId", (req, res, next) => {
+  var id = req.params.articleId;
+  req.body.articleId = id;
+  req.body.userId = req.userid;
+  Comment.create(req.body, (err, newComment) => {
+    if (err) return res.json();
+  });
+});
