@@ -2,6 +2,7 @@ import React from "react";
 import Header from "../src/components/Header";
 import SignUp from "../src/components/SignUp";
 import Banner from "../src/components/Banner";
+import Profile from "../src/components/Profile";
 import "./App.css";
 
 function App() {
@@ -11,7 +12,8 @@ function App() {
         <Header />
       </header>
 
-      <Banner />
+      {/* <Banner /> */}
+      <Profile />
     </>
   );
 }
