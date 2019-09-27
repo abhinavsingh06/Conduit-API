@@ -6,9 +6,8 @@ export class Feed extends Component {
       <>
         <div className="feed-container">
           <div>
-            <h5>Global Feed</h5>
+            <h6>Global Feed</h6>
           </div>
-          <hr />
           <div></div>
         </div>
       </>
