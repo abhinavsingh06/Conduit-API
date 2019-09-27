@@ -4,7 +4,13 @@ export class Feed extends Component {
   render() {
     return (
       <>
-        <div></div>
+        <div className="feed-container">
+          <div>
+            <h5>Global Feed</h5>
+          </div>
+          <hr />
+          <div></div>
+        </div>
       </>
     );
   }

@@ -4,6 +4,8 @@ import SignUp from "../src/components/SignUp";
 import Banner from "../src/components/Banner";
 import Profile from "../src/components/Profile";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Aside from "../src/components/Aside";
+import Feed from "./components/Feed";
 import "./App.css";
 
 function App() {
@@ -12,9 +14,11 @@ function App() {
       <header className="header-container App-header">
         <Header />
       </header>
-
-      {/* <Banner /> */}
-      <Profile />
+      <Banner />
+      <section className="body-container">
+        <Feed />
+        <Aside />
+      </section>
     </>
   );
 }

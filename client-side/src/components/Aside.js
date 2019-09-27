@@ -1,21 +1,21 @@
 import React, { Component } from "react";
-import Badge from "react-bootstrap/Badge";
+import "../aside.css";
+import Tag from "./Tag";
 
 export class Aside extends Component {
   render() {
     return (
-      <div>
-        <div>
+      <>
+        <div className="aside-container">
           <div>
-            <h3>Popular Tags</h3>
+            <h6>Popular Tags</h6>
           </div>
-          <div>
-            <Badge pill variant="secondary">
-              Tag
-            </Badge>
+          <div className="tag-container">
+            <Tag />
+            <Tag />
           </div>
         </div>
-      </div>
+      </>
     );
   }
 }
