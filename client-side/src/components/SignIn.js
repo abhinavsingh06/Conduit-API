@@ -5,9 +5,9 @@ export class SignUp extends Component {
   render() {
     return (
       <>
-        <div>
+        <div className="form-banner">
           <h1>Sign In</h1>
-          <p>Need an account?</p>
+          <p>Have an account?</p>
         </div>
         <div className="form-container">
           <form className="form-section">

@@ -1,20 +1,30 @@
 .navbar {
     display: flex;
     justify-content: space-between;
-    width: 60%;
+    width: 63%;
     margin: 0 auto;
     padding: 1rem 0;
 }
 
-.logo h1 {
+.logo-txt {
     color: #5CB85C;
     font-size: 1.5rem;
     font-weight: 800;
-
+    text-decoration: none;
 }
 
-a {
+.link-txt {
     margin-left: 1rem;
-    color: gray;
+    color: black;
     font-size: 1.2rem;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a:hover {
+    color: gray;
+}
+
+.navbar-list {
+    margin-top: 0.8rem;
 }
