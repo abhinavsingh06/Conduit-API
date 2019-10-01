@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import "../signup.css";
+import Header from "./Header";
 
 export class SignUp extends Component {
   render() {
     return (
       <>
+        <Header />
         <div className="form-banner">
           <h1>Sign In</h1>
           <p>Have an account?</p>
