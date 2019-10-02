@@ -6,6 +6,16 @@ import Aside from "../components/Aside";
 import "../home.css";
 
 export class Home extends Component {
+  state = {
+    articles: null
+  };
+
+  componentDidMount() {
+    fetch("https://conduit.productionready.io/api/articles?limit=10&offset=0")
+      .then(res => res.json())
+      .then(({ articles }) => this.setState({ articles }));
+  }
+
   render() {
     return (
       <>
@@ -16,7 +26,7 @@ export class Home extends Component {
           <Banner />
         </div>
         <div className="body-container">
-          <Feed />
+          <Feed articles={this.state.articles} />
           <Aside />
         </div>
       </>
