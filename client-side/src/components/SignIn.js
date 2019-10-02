@@ -1,14 +1,17 @@
 import React, { Component } from "react";
 import "../signup.css";
 import Header from "./Header";
+import Loader from "./Loader";
 
 export class SignIn extends Component {
   state = {
     email: "",
-    password: ""
+    password: "",
+    loading: false
   };
 
   handleSubmit = event => {
+    this.setState({ loading: true });
     event.preventDefault();
     fetch("https://conduit.productionready.io/api/users/login", {
       method: "POST",
@@ -18,7 +21,10 @@ export class SignIn extends Component {
       }
     })
       .then(res => res.json())
-      .then(user => this.props.history.push("/"));
+      .then(user => {
+        this.props.history.push("/home");
+        this.setState({ loading: false });
+      });
   };
 
   handleChange = ({ target: { name, value } }) => {
@@ -26,9 +32,12 @@ export class SignIn extends Component {
   };
 
   render() {
-    return (
+    return this.state.loading ? (
+      <Loader />
+    ) : (
       <>
         <Header />
+
         <div className="form-banner">
           <h1>Sign In</h1>
           <p>Have an account?</p>
