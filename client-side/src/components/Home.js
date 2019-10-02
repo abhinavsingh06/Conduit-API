@@ -19,9 +19,6 @@ export class Home extends Component {
   render() {
     return (
       <>
-        <header>
-          <Header />
-        </header>
         <div>
           <Banner />
         </div>

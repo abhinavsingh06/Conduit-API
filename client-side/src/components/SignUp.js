@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../signup.css";
-import Header from "./Header";
+import { withRouter } from "react-router-dom";
 import Loader from "./Loader";
 
 export class SignUp extends Component {
@@ -22,9 +22,9 @@ export class SignUp extends Component {
       }
     })
       .then(res => res.json())
-      .then(user => {
-        console.log(user);
-        this.props.history.push("/");
+      .then(({ user }) => {
+        this.props.changeUser(user);
+        this.props.history.push("/home");
         this.setState({ loading: false });
       });
   };
@@ -38,8 +38,6 @@ export class SignUp extends Component {
       <Loader />
     ) : (
       <>
-        <Header />
-
         <div className="form-banner">
           <h1>Sign Up</h1>
           <p>Need an account?</p>
@@ -77,4 +75,4 @@ export class SignUp extends Component {
   }
 }
 
-export default SignUp;
+export default withRouter(SignUp);

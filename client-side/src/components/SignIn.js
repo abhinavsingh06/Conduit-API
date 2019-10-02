@@ -1,6 +1,6 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import "../signup.css";
-import Header from "./Header";
 import Loader from "./Loader";
 
 export class SignIn extends Component {
@@ -11,6 +11,7 @@ export class SignIn extends Component {
   };
 
   handleSubmit = event => {
+    event.preventDefault();
     this.setState({ loading: true });
     event.preventDefault();
     fetch("https://conduit.productionready.io/api/users/login", {
@@ -22,9 +23,14 @@ export class SignIn extends Component {
     })
       .then(res => res.json())
       .then(user => {
-        this.props.history.push("/home");
         this.setState({ loading: false });
-      });
+        if (user.errors) throw new Error(user.errors);
+        console.log(user.user.token, user);
+        localStorage.setItem("authToken", JSON.stringify(user.user.token));
+        this.props.changeUser(user);
+        this.props.history.push("/home");
+      })
+      .catch(err => console.error(err));
   };
 
   handleChange = ({ target: { name, value } }) => {
@@ -36,8 +42,6 @@ export class SignIn extends Component {
       <Loader />
     ) : (
       <>
-        <Header />
-
         <div className="form-banner">
           <h1>Sign In</h1>
           <p>Have an account?</p>
@@ -68,4 +72,4 @@ export class SignIn extends Component {
   }
 }
 
-export default SignIn;
+export default withRouter(SignIn);

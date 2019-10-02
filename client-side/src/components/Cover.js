@@ -5,7 +5,7 @@ import Feed from "../components/Feed";
 import Aside from "../components/Aside";
 import "../home.css";
 
-export class Home extends Component {
+export class Cover extends Component {
   state = {
     articles: null
   };
@@ -19,9 +19,7 @@ export class Home extends Component {
   render() {
     return (
       <>
-        <header>
-          <Header />
-        </header>
+        <h1>COVER</h1>
         <div>
           <Banner />
         </div>
@@ -34,4 +32,4 @@ export class Home extends Component {
   }
 }
 
-export default Home;
+export default Cover;

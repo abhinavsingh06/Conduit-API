@@ -1,10 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "../header.css";
 
-export class Header extends Component {
-  render() {
-    return (
+export default function Header(props) {
+  console.log(props.user);
+  return (
+    <div>
       <>
         <nav className="navbar">
           <div className="logo">
@@ -15,20 +16,34 @@ export class Header extends Component {
             </h1>
           </div>
           <ul className="navbar-list">
-            <Link to="/" className="link-txt">
-              Home
-            </Link>
-            <Link to="/signin" className="link-txt">
-              Sign In
-            </Link>
-            <Link to="/signup" className="link-txt">
-              Sign Up
-            </Link>
+            {props.user ? (
+              <>
+                <Link to="/home" className="link-txt">
+                  Home
+                </Link>
+                <Link to="/settings" className="link-txt">
+                  Settings
+                </Link>
+                <Link to="/profile" className="link-txt">
+                  {props.user.user.username}
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link to="/" className="link-txt">
+                  Cover
+                </Link>
+                <Link to="/signin" className="link-txt">
+                  Sign In
+                </Link>
+                <Link to="/signup" className="link-txt">
+                  Sign Up
+                </Link>
+              </>
+            )}
           </ul>
         </nav>
       </>
-    );
-  }
+    </div>
+  );
 }
-
-export default Header;
