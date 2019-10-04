@@ -10,6 +10,7 @@ import Profile from "./components/Profile";
 import { Route, Switch, withRouter } from "react-router-dom";
 import NewArticle from "./components/NewArticle";
 import Article from "./components/Article";
+import Settings from "./components/Settings";
 
 export class App extends Component {
   state = {
@@ -21,10 +22,10 @@ export class App extends Component {
   };
 
   vaildUser = token => {
-    token = `Token: ${token}`;
+    token = `Token ${token}`;
     fetch("https://conduit.productionready.io/api/user", {
       headers: {
-        authorization: token
+        Authorization: token
       }
     })
       .then(data => data.json())
@@ -63,6 +64,7 @@ export class App extends Component {
         <Route path="/newarticle" component={NewArticle} />
         <Route path="/article" component={Article} />
         <Route path="/profile" component={Profile} />
+        <Route path="/settings" component={Settings} />
       </Switch>
     );
   };

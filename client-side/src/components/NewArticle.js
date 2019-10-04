@@ -6,32 +6,35 @@ export class NewArticle extends Component {
     title: "",
     description: "",
     body: "",
-    tagList: []
+    tagList: ""
   };
 
-  handleSubmit = event => {
-    console.log(event);
-    event.preventDefault();
+  handleClick = () => {
+    const tagList = this.state.tagList.split(",").map(tag => tag.trim());
+    const { title, description, body } = this.state;
+    const data = {
+      article: {
+        title,
+        description,
+        body,
+        tagList
+      }
+    };
     fetch("https://conduit.productionready.io/api/articles", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
-        Authorization: JSON.parse(localStorage.token)
+        "Content-Type": "application/json"
+        // Authorization: `Token ${localstorage.token}`
       },
-      body: JSON.stringify({
-        article: this.state
-      })
+      body: JSON.stringify(data)
     })
       .then(res => res.json())
       .then(article => {
-        // this.setState(article.articles);
-        this.props.history.push("/");
-      })
-      .catch(err => console.log(err));
+        console.log(article);
+      }, this.props.history.push("/"));
   };
 
-  handleChange = event => {
-    let { value, name } = event.target;
+  handleChange = ({ target: { name, value } }) => {
     this.setState({
       [name]: value
     });
@@ -74,7 +77,7 @@ export class NewArticle extends Component {
             <button
               className="form-btn"
               type="submit"
-              onClick={this.handleSubmit}
+              onClick={this.handleClick}
             >
               Submit
             </button>
