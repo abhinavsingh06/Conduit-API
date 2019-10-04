@@ -7,7 +7,9 @@ import Cover from "./components/Cover";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Profile from "./components/Profile";
-import { Route } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
+import NewArticle from "./components/NewArticle";
+import Article from "./components/Article";
 
 export class App extends Component {
   state = {
@@ -17,8 +19,9 @@ export class App extends Component {
   changeUser = user => {
     this.setState({ user });
   };
+
   vaildUser = token => {
-    token = `Token ${token}`;
+    token = `Token: ${token}`;
     fetch("https://conduit.productionready.io/api/user", {
       headers: {
         authorization: token
@@ -34,15 +37,13 @@ export class App extends Component {
       this.vaildUser(JSON.parse(localStorage.authToken));
     }
   }
-  render() {
-    const { user } = this.state;
+
+  publicRoutes = () => {
     return (
-      <>
-        <Header user={user} />
+      <Switch>
         <Route exact path="/" component={Cover} />
-        <Route exact path="/home" component={Home} />
         <Route
-          exact
+          exactuser
           path="/signin"
           render={() => <SignIn changeUser={this.changeUser} />}
         />
@@ -51,7 +52,29 @@ export class App extends Component {
           path="/signup"
           render={() => <SignUp changeUser={this.changeUser} />}
         />
+      </Switch>
+    );
+  };
+
+  privateRoutes = () => {
+    return (
+      <Switch>
+        <Route exact path="/home" component={Home} />
+        <Route path="/newarticle" component={NewArticle} />
+        <Route path="/article" component={Article} />
         <Route path="/profile" component={Profile} />
+      </Switch>
+    );
+  };
+
+  render() {
+    const { user } = this.state;
+    return (
+      <>
+        <Header user={user} />
+        {user || localStorage.token
+          ? this.privateRoutes()
+          : this.publicRoutes()}
       </>
     );
   }

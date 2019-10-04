@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Header from "../components/Header";
 import Banner from "../components/Banner";
 import Feed from "../components/Feed";
 import Aside from "../components/Aside";
@@ -19,9 +18,6 @@ export class Home extends Component {
   render() {
     return (
       <>
-        <div>
-          <Banner />
-        </div>
         <div className="body-container">
           <Feed articles={this.state.articles} />
           <Aside />

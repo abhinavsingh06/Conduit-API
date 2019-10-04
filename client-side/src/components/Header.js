@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import "../header.css";
 
 export default function Header(props) {
-  console.log(props.user);
   return (
     <div>
       <>
@@ -20,6 +19,9 @@ export default function Header(props) {
               <>
                 <Link to="/home" className="link-txt">
                   Home
+                </Link>
+                <Link to="/newarticle" className="link-txt">
+                  New Article
                 </Link>
                 <Link to="/settings" className="link-txt">
                   Settings

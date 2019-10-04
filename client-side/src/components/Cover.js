@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Header from "../components/Header";
 import Banner from "../components/Banner";
 import Feed from "../components/Feed";
 import Aside from "../components/Aside";

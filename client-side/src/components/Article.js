@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Header from "./Header";
 import Button from "react-bootstrap/Button";
 import "../article.css";
 
