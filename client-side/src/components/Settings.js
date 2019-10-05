@@ -19,6 +19,16 @@ export class Settings extends Component {
     });
   };
 
+  componentDidMount = () => {
+    fetch("https://conduit.productionready.io/api/user", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+        // Authorization: `Token ${localstorage.token}`
+      }
+    });
+  };
+
   render() {
     return (
       <div>
