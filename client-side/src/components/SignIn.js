@@ -26,7 +26,7 @@ export class SignIn extends Component {
         this.setState({ loading: false });
         if (user.errors) throw new Error(user.errors);
         console.log(user.user.token, user);
-        localStorage.setItem("authToken", JSON.stringify(user.user.token));
+        localStorage.setItem("authToken", user.user.token);
         this.props.changeUser(user);
         this.props.history.push("/home");
       })
