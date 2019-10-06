@@ -7,7 +7,7 @@ import Cover from "./components/Cover";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Profile from "./components/Profile";
-import { Route, Switch, withRouter } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import NewArticle from "./components/NewArticle";
 import Article from "./components/Article";
 import Settings from "./components/Settings";
@@ -25,7 +25,7 @@ export class App extends Component {
     token = `Token ${token}`;
     fetch("https://conduit.productionready.io/api/user", {
       headers: {
-        Authorization: token
+        authorization: token
       }
     })
       .then(data => data.json())
